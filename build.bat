@@ -28,10 +28,14 @@ mkdir "%TEMP_FOLDER%"
 
 :: Copy files and folders individually to avoid cyclic copy
 echo Copying files to the temp directory...
-xcopy "%SOURCE_FOLDER%\manifest.json" "%TEMP_FOLDER%" /Q
-xcopy "%SOURCE_FOLDER%\mrbeastify.js" "%TEMP_FOLDER%" /Q
+xcopy "%SOURCE_FOLDER%\manifest v2.json" "%TEMP_FOLDER%" /Q
+xcopy "%SOURCE_FOLDER%\chiezify.js" "%TEMP_FOLDER%" /Q
 xcopy "%SOURCE_FOLDER%\images" "%TEMP_FOLDER%\images\" /E /Q
 xcopy "%SOURCE_FOLDER%\icons" "%TEMP_FOLDER%\icons\" /E /Q
+
+:: Rename manifest for Firefox
+echo Preparing files for Firefox zip...
+rename "%TEMP_FOLDER%\manifest v2.json" "manifest.json"
 
 :: Create Firefox zip folder using 7-Zip
 echo Creating Firefox zip folder...
@@ -43,14 +47,14 @@ if exist "%TEMP_FOLDER%" rmdir /s /q "%TEMP_FOLDER%"
 mkdir "%TEMP_FOLDER%"
 
 :: Copy files and folders for Chromium
-xcopy "%SOURCE_FOLDER%\mrbeastify.js" "%TEMP_FOLDER%" /Q
-xcopy "%SOURCE_FOLDER%\manifest v3.json" "%TEMP_FOLDER%" /Q
+xcopy "%SOURCE_FOLDER%\chiezify.js" "%TEMP_FOLDER%" /Q
+xcopy "%SOURCE_FOLDER%\manifest.json" "%TEMP_FOLDER%" /Q
 xcopy "%SOURCE_FOLDER%\images" "%TEMP_FOLDER%\images\" /E /Q
 xcopy "%SOURCE_FOLDER%\icons" "%TEMP_FOLDER%\icons\" /E /Q
 
 :: Rename manifest for Chromium
-echo Preparing files for Chromium zip...
-rename "%TEMP_FOLDER%\manifest v3.json" "manifest.json"
+:: echo Preparing files for Chromium zip...
+:: rename "%TEMP_FOLDER%\manifest v3.json" "manifest.json"
 
 :: Create Chromium zip folder using 7-Zip
 echo Creating Chromium zip folder...

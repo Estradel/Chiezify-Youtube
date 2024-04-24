@@ -9,9 +9,12 @@ function applyOverlay(thumbnailElement, overlayImageURL, flip = false) {
     const overlayImage = document.createElement("img");
     overlayImage.src = overlayImageURL;
     overlayImage.style.position = "absolute";
-    overlayImage.style.top = overlayImage.style.left = "50%";
-    overlayImage.style.width = "100%";
-    overlayImage.style.transform = `translate(-50%, -50%) ${flip ? 'scaleX(-1)' : ''}`; // Center and flip the image
+    // overlayImage.style.top  = "50%";
+    overlayImage.style.left = flip ? "45%" : "0%";
+    // overlayImage.style.width = "100%";
+    overlayImage.style.height = "100%";
+    // overlayImage.style.transform = `translate(-50%, -50%) ${flip ? 'scaleX(-1)' : ''}`; // Center and flip the image
+    overlayImage.style.transform = `${flip ? 'scaleX(-1)' : ''}`; // Center and flip the image
     overlayImage.style.zIndex = "0"; // Ensure overlay is on top but below the time indicator
     thumbnailElement.parentElement.insertBefore(overlayImage, thumbnailElement.nextSibling /*Makes sure the image doesn't cover any info, but still overlays the original thumbnail*/ );
 };
